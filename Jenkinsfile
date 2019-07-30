@@ -59,41 +59,23 @@ pipeline {
 						def didTimeout = false;
 
 						try {
-							timeout(time: 60, unit: "SECONDS"){
-								input(message: "Are you sure that you want to Deploy to the Production environment ?")
-							}
+							input(message: "Are you sure that you want to Deploy to the Production environment ?")
+							
 						}
 						catch(FlowInterruptedException abortError){
-							def user = abortError.getCauses()[0].getUser()
 							
-							// SYSTEM means timeout.
-							if('SYSTEM' == user.toString()) { 
-						        didTimeout = true
 								echo "The deployment to production was Aborted automatically by the default timeout. (${user})"
-						    }
-							// If user is distinct from SYSTEM, then a jenkins user aborted the pipeline deploy.
-							else {
-								println "The Deploying to production process was canceled by the user: ${user}"
-								abortFlag = true
-							}
-							
+						    
 						}
 						catch(Exception exc) {
 					        echo "echo 'Deploy stage error: ${exc.toString()}'"
 						}
 						finally {
-							if(didTimeout) {
-								sh "echo 'The deploy to production environment was automatically canceled because the user did not confirmed the deploy before to the timeout.'"
-							}
-							if(didTimeout && abortFlag) {
-								
-								deployToEnvironment("Production", DEV_AWS_ACCESS_KEY, DEV_AWS_SECRET_KEY, AWS_REGION, AWS_SERVICE_NAME, STASH_NAME);
-								
-							}
+							
 						}
 					}
 					else {
-						deployToEnvironment("Development", DEV_AWS_ACCESS_KEY, DEV_AWS_SECRET_KEY, AWS_REGION, AWS_SERVICE_NAME, STASH_NAME);
+						//deployToEnvironment("Development", DEV_AWS_ACCESS_KEY, DEV_AWS_SECRET_KEY, AWS_REGION, AWS_SERVICE_NAME, STASH_NAME);
 					}
 						
 			}
