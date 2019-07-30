@@ -9,10 +9,6 @@ pipeline {
 
 	agent none
 
-	options {
-		buildDiscarder logRotator( daysToKeepStr: '8', numToKeepStr: '5') 
-	}
-
 	environment {
 		MyCustomParam1 = "myCustomValue"
 	}
@@ -41,6 +37,7 @@ pipeline {
 					highlightStage("Unit Tests")
 					sh '''
 						echo "TO DO - Add unit tests execution."
+						ssh "date '+%Y-%m-%d %H:%M:%S'"
 					'''
 				}
 			}
