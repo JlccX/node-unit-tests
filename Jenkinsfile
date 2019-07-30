@@ -39,6 +39,7 @@ pipeline {
 			script {
 				node {
 					highlightStage("Unit Tests")
+					checkout scm
 					sh '''
 						echo "TO DO - Add unit tests execution."
 					'''
