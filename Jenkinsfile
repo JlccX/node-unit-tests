@@ -44,7 +44,7 @@ pipeline {
 					
 					stash name: "MisArchivos", includes: "**"
 					cleanWs()
-					bat label: '', script: 'dir'
+					//bat label: '', script: 'dir'
 				}
 			}
 		}
