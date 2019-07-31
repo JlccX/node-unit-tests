@@ -40,9 +40,23 @@ pipeline {
 				node {
 					highlightStage("Unit Tests")
 					checkout scm
-					sh '''
-						echo "TO DO - Add unit tests execution."
-					'''
+					
+					
+					stash name: "MisArchivos", includes: "*.txt"
+				}
+			}
+		}
+	}
+		
+		stage("Demo") {
+		steps {
+			script {
+				node {
+					highlightStage("Unit Tests")
+					checkout scm
+					
+					
+					unstash  "MisArchivos"
 				}
 			}
 		}
@@ -89,7 +103,7 @@ pipeline {
 
 def highlightStage(stageName) {
 	ansiColor('xterm') {
-		echo "\033[42m  +++++++++++++++++++ ${stageName} Stage +++++++++++++++++++ \033[0m"
+		//echo "\033[42m  +++++++++++++++++++ ${stageName} Stage +++++++++++++++++++ \033[0m"
 	}
 }
 
