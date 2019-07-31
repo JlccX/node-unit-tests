@@ -44,6 +44,7 @@ pipeline {
 					
 					stash name: "MisArchivos", includes: "**"
 					cleanWs()
+					bat label: '', script: 'dir'
 				}
 			}
 		}
@@ -54,9 +55,9 @@ pipeline {
 			script {
 				node {
 					//highlightStage("Unit Tests")
-					
+					bat label: '', script: 'dir'
 					unstash  "MisArchivos"
-					sh "dir"
+					bat label: '', script: 'dir'
 					println "unstash test"
 					cleanWs()
 					deleteDir()
