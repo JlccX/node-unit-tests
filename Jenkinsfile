@@ -53,7 +53,7 @@ pipeline {
 		steps {
 			script {
 				node {
-					highlightStage("Unit Tests")
+					//highlightStage("Unit Tests")
 					
 					unstash  "MisArchivos"
 					sh "dir"
