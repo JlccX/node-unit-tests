@@ -70,7 +70,7 @@ pipeline {
 		steps {
 			script {
 
-					highlightStage("Deploy")
+					//highlightStage("Deploy")
 
 					if(env.isMasterBranch.toBoolean()) {
 
