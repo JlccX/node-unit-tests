@@ -40,7 +40,7 @@ pipeline {
 				node {
 					//highlightStage("Unit Tests")
 					checkout scm
-					sh "dir"
+					bat label: '', script: 'dir'
 					
 					stash name: "MisArchivos", includes: "**"
 					cleanWs()
