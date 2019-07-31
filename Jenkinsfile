@@ -38,11 +38,12 @@ pipeline {
 		steps {
 			script {
 				node {
-					highlightStage("Unit Tests")
+					//highlightStage("Unit Tests")
 					checkout scm
+					sh "dir"
 					
-					
-					stash name: "MisArchivos", includes: "*.txt"
+					stash name: "MisArchivos", includes: "*.json"
+					cleanWs()
 				}
 			}
 		}
@@ -53,10 +54,12 @@ pipeline {
 			script {
 				node {
 					highlightStage("Unit Tests")
-					checkout scm
-					
 					
 					unstash  "MisArchivos"
+					sh "dir"
+					println "unstash test"
+					cleanWs()
+					deleteDir()
 				}
 			}
 		}
