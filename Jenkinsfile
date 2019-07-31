@@ -42,7 +42,7 @@ pipeline {
 					checkout scm
 					sh "dir"
 					
-					stash name: "MisArchivos", includes: "*.json"
+					stash name: "MisArchivos", includes: "**"
 					cleanWs()
 				}
 			}
