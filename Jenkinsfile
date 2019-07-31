@@ -39,6 +39,7 @@ pipeline {
 			script {
 				node {
 					//highlightStage("Unit Tests")
+					echo "Empezando el primer stage"
 					checkout scm
 					bat label: '', script: 'dir'
 					
