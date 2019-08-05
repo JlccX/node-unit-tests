@@ -35,8 +35,8 @@ pipeline {
 			script {
 				node {
 					highlightStage("Unit Tests")
-					sh '''
-						echo "TO DO - Add unit tests execution."
+					echo '''
+						TO DO - Add unit tests execution.
 					'''
 				}
 			}
