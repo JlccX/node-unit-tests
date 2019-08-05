@@ -42,7 +42,7 @@ pipeline {
 					'''
 					dir(stashName) {
 						checkout scm
-						sh label: '', script: 'dir'
+						bat "dir"
 					}
 					stash name: "${stashName}", include: "${stashName}/**"
 				}
