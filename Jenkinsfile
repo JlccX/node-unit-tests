@@ -9,10 +9,6 @@ pipeline {
 
 	agent none
 
-	options {
-		buildDiscarder logRotator( daysToKeepStr: '8', numToKeepStr: '5') 
-	}
-
 	environment {
 		MyCustomParam1 = "myCustomValue"
 	}
@@ -137,7 +133,7 @@ def deployToEnvironment(environmentName, envAwsAccessKey, envAwsSecretKey, regio
 						//withCredentials( secretsList ) {
 							//withEnv( environmentParamsList ) {
 
-								removeAllFiles()
+								//removeAllFiles()
 
 								unstash "$stashName"
 								myParam1 = "${AWS_ACCESS_KEY}"
