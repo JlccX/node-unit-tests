@@ -83,13 +83,13 @@ pipeline {
 							}
 							if(didTimeout && abortFlag) {
 								
-								deployToEnvironment("Production", DEV_AWS_ACCESS_KEY, DEV_AWS_SECRET_KEY, AWS_REGION, AWS_SERVICE_NAME, STASH_NAME);
+								deployToEnvironment("Production");
 								
 							}
 						}
 					}
 					else {
-						deployToEnvironment("Development", DEV_AWS_ACCESS_KEY, DEV_AWS_SECRET_KEY, AWS_REGION, AWS_SERVICE_NAME, STASH_NAME);
+						deployToEnvironment("Development");
 					}
 						
 			}
