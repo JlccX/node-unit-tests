@@ -157,10 +157,12 @@ def deployToEnvironment(environmentName, stashName){
 									//	echo "Hola mundo"
 									//'''	
 								}
-								println "Credencial fuera bloque: ${credential}"
+								
 
 							} // withEnv
 						} // withCredentials
+
+						println "Credencial fuera bloque: ${credential}"
 
 					  //}
 				//}
