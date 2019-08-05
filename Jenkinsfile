@@ -105,9 +105,9 @@ pipeline {
 }
 
 def highlightStage(stageName) {
-	ansiColor('xterm') {
-		echo "\033[42m  +++++++++++++++++++ ${stageName} Stage +++++++++++++++++++ \033[0m"
-	}
+	//ansiColor('xterm') {
+		println "\033[42m  +++++++++++++++++++ ${stageName} Stage +++++++++++++++++++ \033[0m"
+	//}
 }
 
 def removeAllFiles() {
@@ -143,9 +143,10 @@ def deployToEnvironment(environmentName, envAwsAccessKey, envAwsSecretKey, regio
 								myParam1 = "${AWS_ACCESS_KEY}"
 
 								dir("$stashName"){
-									sh '''
-										echo "Hola mundo"
-									'''	
+									emailext body: 'hello, the jenkins pipeline was executed.', subject: 'jenkins test', to: 'jlccx@live.com'
+									//sh '''
+									//	echo "Hola mundo"
+									//'''	
 								}
 
 							//} // withEnv
