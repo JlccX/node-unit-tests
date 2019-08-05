@@ -11,7 +11,7 @@ pipeline {
 
 	environment {
 		MyCustomParam1 = "myCustomValue"
-		stashName = "customFolder"
+		stashName = "customFolder" + ${BUILD_NUMBER}
 	}
 
 
@@ -36,9 +36,15 @@ pipeline {
 			script {
 				node {
 					highlightStage("Unit Tests")
+
 					echo '''
 						TO DO - Add unit tests execution.
 					'''
+					dir(stashName) {
+						checkout scm
+						sh "dir"
+					}
+					stash name: "${stashName}", include: "${stashName}/**"
 				}
 			}
 		}
@@ -49,6 +55,7 @@ pipeline {
 			script {
 
 					highlightStage("Deploy")
+					unstash "${stashName}"
 
 					if(env.isMasterBranch.toBoolean()) {
 
