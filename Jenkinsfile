@@ -35,7 +35,7 @@ pipeline {
 		steps {
 			script {
 				node {
-					highlightStage("Unit Tests")
+					highlightStage("Unit Tests ${stashName}")
 
 					echo '''
 						TO DO - Add unit tests execution.
