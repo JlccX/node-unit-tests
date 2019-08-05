@@ -11,7 +11,7 @@ pipeline {
 
 	environment {
 		MyCustomParam1 = "myCustomValue"
-		stashName = "customFolder" + ${BUILD_NUMBER}
+		stashName = "customFolder-${BUILD_NUMBER}"
 	}
 
 
