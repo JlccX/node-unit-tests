@@ -111,7 +111,7 @@ def removeAllFiles() {
 	sh "rm -rf *"
 }
 
-def deployToEnvironment(environmentName, envAwsAccessKey, envAwsSecretKey, region, serviceName, stashName ){
+def deployToEnvironment(environmentName){
 
 	stage("AWS-Deploy to ${environmentName}.") {
 		script {
