@@ -10,7 +10,7 @@ pipeline {
 	agent none
 
 	environment {
-		MyCustomParam1 = "myCustomValue",
+		MyCustomParam1 = "myCustomValue"
 		stashName = "customFolder"
 	}
 
