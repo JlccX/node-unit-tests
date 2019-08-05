@@ -54,6 +54,8 @@ pipeline {
 		steps {
 			script {
 
+				node {
+
 					highlightStage("Deploy")
 					unstash "${stashName}"
 
@@ -100,6 +102,7 @@ pipeline {
 						deployToEnvironment("Development",stashName);
 					}
 						
+				}
 			}
 		}
 	}
