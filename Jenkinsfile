@@ -127,17 +127,43 @@ def deployToEnvironment(environmentName, stashName){
 	stage("AWS-Deploy to ${environmentName}.") {
 		script {
 			node {
-				
+				//docker.withRegistry("http://incontact-docker-snapshot-local.jfrog.io","${JFROG_ARTIFACTORY_BUILD_CREDENTIAL}") {
+              		//docker.image("cicd-awscli-toolbox2:latest").inside("-u root:root"){
+
+						highlightStage("AWS-Deploy to ${environmentName}.")
+
+						def secretsList = []
+						secretsList.add(string(credentialsId: "	MyPrimerSecret", variable: "AWS_ACCESS_KEY"))
+						secretsList.add(string(credentialsId: "	MyPrimerSecret", variable: "AWS_SECRET_KEY"))
+
+						def environmentParamsList = []
+					  	environmentParamsList.add( "AWS_REGION=${MyPrimerParametro}" )
+						environmentParamsList.add( "SERVICE_NAME=${MySegundoParametro}" )
+
+						def credential;
+
+						withCredentials( secretsList ) {
+							withEnv( environmentParamsList ) {
+
+								//removeAllFiles()
+
 								unstash "$stashName"
+								credential = "${AWS_ACCESS_KEY}"
 
 								dir("$stashName"){
+									echo "MiPrimer credential value ${AWS_ACCESS_KEY}"
 									emailext body: 'hello, the jenkins pipeline was executed.', subject: 'jenkins test', to: 'jlccx@live.com'
 									//sh '''
 									//	echo "Hola mundo"
 									//'''	
 								}
+								println "Credencial fuera bloque: ${credential}"
 
-					
+							} // withEnv
+						} // withCredentials
+
+					  //}
+				//}
 			}
 		}
 	} // Stage AWS-Deploy to xxx Closed.
