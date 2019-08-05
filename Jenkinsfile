@@ -10,7 +10,8 @@ pipeline {
 	agent none
 
 	environment {
-		MyCustomParam1 = "myCustomValue"
+		MyCustomParam1 = "myCustomValue",
+		stashName = "customFolder"
 	}
 
 
@@ -83,13 +84,13 @@ pipeline {
 							}
 							if(didTimeout && abortFlag) {
 								
-								deployToEnvironment("Production");
+								deployToEnvironment("Production",stashName);
 								
 							}
 						}
 					}
 					else {
-						deployToEnvironment("Development");
+						deployToEnvironment("Development",stashName);
 					}
 						
 			}
@@ -111,7 +112,7 @@ def removeAllFiles() {
 	sh "rm -rf *"
 }
 
-def deployToEnvironment(environmentName){
+def deployToEnvironment(environmentName, stashName){
 
 	stage("AWS-Deploy to ${environmentName}.") {
 		script {
