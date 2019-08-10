@@ -2,6 +2,10 @@ pipeline {
     
     agent none;
     
+    environment {
+        myUsername = "JoseLuis"
+    }
+    
     stages {
         
         stage("Build") {
@@ -9,16 +13,21 @@ pipeline {
                 script {
                     node {
                         println "Build stage"
+                        echo "Nombre de Usuario ${myUsername}"
                     }
                 }
             }
         }
         
          stage("Unit tests") {
+             environment {
+                 myUsername = "JlccX"
+             }
             steps {
                 script {
                     node {
                         println "unit tests stage"
+                        println "Nombre de Usuario $myUsername"
                     }
                 }
             }
