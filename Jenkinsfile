@@ -43,6 +43,16 @@ pipeline {
             }
         }
         
+         stage("deploy") {
+            steps {
+                script {
+                    node {
+                        println "deploy"
+                    }
+                }
+            }
+        }
+        
         
     }
     
