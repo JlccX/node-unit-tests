@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     node {
-                        println "Build stage"
+                        println "Build stage "
                         echo "Nombre de Usuario ${myUsername}"
                     }
                 }
