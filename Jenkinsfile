@@ -47,7 +47,7 @@ pipeline {
             steps {
                 script {
                     node {
-                        println "deploy xyz "
+                        println "deploy xyz 3"
                     }
                 }
             }
